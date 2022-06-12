@@ -1,0 +1,108 @@
+SCR_BaseGameMode GameMode_Plain1 : "{1B76F75A3175E85C}Prefabs/MP/Modes/Plain/GameMode_Plain.et" {
+ components {
+  SCR_AutomaticRespawnHandlerComponent "{56B4EA4DA0EEFF85}" {
+   m_iForcedFaction 0
+  }
+ }
+ coords 4353.705 4.938 9515.768
+ {
+  SCR_FactionManager FactionManager_USxUSSR1 : "{589540B35EBA8CDC}Prefabs/MP/Managers/Factions/FactionManager_USxUSSR.et" {
+   coords 13.191 1.008 -20.847
+  }
+  SCR_LoadoutManager : "{97EF4C1A41F63DDB}Prefabs/MP/Managers/Loadouts/LoadoutManager_USxUSSR.et" {
+   coords -0.497 -0.659 -4.36
+  }
+ }
+}
+EVO_TaskManager {
+ components {
+  SCR_TextsTaskManagerComponent "{598F3B8C5138AC36}" {
+  }
+  SCR_UITaskManagerComponent "{598F3B8C6D8718F6}" {
+  }
+  RplComponent "{598F3B8C5F2DFB6E}" {
+   Streamable Disabled
+  }
+ }
+ coords 4356.374 5.996 9519.266
+ m_aSupportedTaskTypes {
+  EVO_TriggerTaskSupportClass "{598F44352ACB4419}" {
+   m_TaskPrefab "{43CCB895125FB22C}Prefabs/EVO_TriggerTask.et"
+  }
+ }
+ {
+  $grp EVO_TriggerTask : "{43CCB895125FB22C}Prefabs/EVO_TriggerTask.et" {
+   {
+    coords 20.939 4.522 -7.147
+    m_sName "Task2"
+    m_sDescription "Task 2 Desc"
+    {
+     SCR_BaseFactionTriggerEntity Task2Trigger {
+      ID "598F3B8CD0C28C41"
+      OnActivate ""\
+      "		/* code here */"\
+      "		super.OnActivate(ent); // this prevents the rest of the class getting broken"\
+      "		"\
+      "		ScenarioVarsClass.SetTaskBState(true);"\
+      "	"
+     }
+    }
+   }
+   {
+    coords 19.915 1.639 15.874
+    m_sName "Task1"
+    m_sDescription "Task1 Desc"
+    {
+     SCR_BaseFactionTriggerEntity Task1Trigger {
+      ID "598F3B8CD0C28C41"
+      OnActivate ""\
+      "		/* code here */"\
+      "		super.OnActivate(ent); // this prevents the rest of the class getting broken"\
+      ""\
+      "		ScenarioVarsClass.SetTaskAState(true);"\
+      "	"
+     }
+    }
+   }
+  }
+ }
+}
+$grp SCR_BaseTriggerEntity {
+ InitTrigger {
+  coords 4373.351 11.212 9575.82
+  OnInit ""\
+  "		/* code here */"\
+  "		super.OnInit(owner);"\
+  "		"\
+  "		ScenarioVarsClass.SetTaskAState(false);"\
+  "		ScenarioVarsClass.SetTaskBState(false);"\
+  "	"
+ }
+ EndTrigger {
+  coords 4373.04 11.024 9567.068
+  TriggerActivationType "Every query"
+  PeriodicQueries 1
+  UpdatePeriod 5
+  OnActivate ""\
+  "		/* code here */"\
+  "		super.OnActivate(ent);"\
+  "		"\
+  "		bool a = ScenarioVarsClass.GetTaskAState();"\
+  "		bool b = ScenarioVarsClass.GetTaskBState();"\
+  "		if(a && b)"\
+  "		{"\
+  "			SCR_BaseGameMode gameMode = SCR_BaseGameMode.Cast(GetGame().GetGameMode());"\
+  "			Faction faction = GetGame().GetFactionManager().GetFactionByKey(\"US\");"\
+  "			int usIndex = GetGame().GetFactionManager().GetFactionIndex(faction);"\
+  "			gameMode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, usIndex));"\
+  "		}"\
+  "	"
+ }
+}
+SCR_VehicleSpawn {
+ coords 4343.338 3.596 9532.663
+ m_rnPrefab "{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et"
+}
+SCR_SpawnPoint : "{5A2220DD0C16958B}Prefabs/MP/Spawning/SpawnPoint_US.et" {
+ coords 4340.394 3.392 9552.918
+}

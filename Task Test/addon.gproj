@@ -1,0 +1,8 @@
+GameProject {
+ ID "TaskTest"
+ GUID "598D5B5903D0FF6E"
+ TITLE "Task Test"
+ Dependencies {
+  "58D0FB3206B6F859"
+ }
+}

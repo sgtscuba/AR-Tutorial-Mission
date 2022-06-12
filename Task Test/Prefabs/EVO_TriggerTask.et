@@ -1,0 +1,27 @@
+EVO_TriggerTask {
+ ID "598F3B8CD0C203B0"
+ components {
+  SCR_MapDescriptorComponent "{598F3B8C71BB32AA}" {
+   DisplayName "Task Location"
+   MainType Task
+  }
+ }
+ coords 4375.972 9.501 9533.222
+ a_factionKey "US"
+ {
+  SCR_BaseFactionTriggerEntity {
+   ID "598F3B8CD0C28C41"
+   components {
+    Hierarchy "{598F3B8CC9D39211}" {
+    }
+   }
+   coords 11.25 2.798 11.466
+   TriggerShapeType Sphere
+   SphereRadius 10
+   DrawShape 1
+   TriggerActivationType "First change"
+   PeriodicQueries 1
+   m_sOwnerFactionKey "US"
+  }
+ }
+}

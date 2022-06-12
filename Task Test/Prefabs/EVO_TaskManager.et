@@ -1,0 +1,17 @@
+EVO_TaskManager {
+ ID "598F443555D4093C"
+ components {
+  SCR_TextsTaskManagerComponent "{598F3B8C5138AC36}" {
+  }
+  SCR_UITaskManagerComponent "{598F3B8C6D8718F6}" {
+  }
+  RplComponent "{598F3B8C5F2DFB6E}" {
+   Streamable Disabled
+  }
+ }
+ coords 4356.374 5.996 9519.266
+ m_aSupportedTaskTypes {
+  EVO_TriggerTaskSupportClass "{598F44352ACB4419}" {
+  }
+ }
+}
